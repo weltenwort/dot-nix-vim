@@ -13,7 +13,7 @@
     in
     {
       globals = {
-        mapleader = "<space>";
+        mapleader = " ";
         maplocalleader = ",";
       };
 
