@@ -164,6 +164,16 @@
           key = "-";
           mode = [ "n" ];
         }
+        {
+          action = ":Pick help<cr>";
+          key = "<leader>ph";
+          mode = [ "n" ];
+        }
+        {
+          action = ":Pick files<cr>";
+          key = "<leader>ph";
+          mode = [ "n" ];
+        }
       ];
     };
 }
