@@ -78,20 +78,36 @@
         # this includes LSPs
         lspsAndRuntimeDeps = {
           common = with pkgs; [
+            universal-ctags
+            ripgrep
+            fd
+          ];
+          nixdev = with pkgs; [
+            nix-doc
+            lua-language-server
+            nixd
           ];
         };
 
         # This is for plugins that will load at startup without using packadd:
         startupPlugins = {
-          gitPlugins = with pkgs.neovimPlugins; [ ];
-          common = with pkgs.vimPlugins; [ ];
+          common = with pkgs.vimPlugins; [
+            lze
+            lzextras
+            mini-nvim
+          ];
         };
 
         # not loaded automatically at startup.
         # use with packadd and an autocommand in config to achieve lazy loading
         optionalPlugins = {
-          gitPlugins = with pkgs.neovimPlugins; [ ];
-          common = with pkgs.vimPlugins; [ ];
+          common = with pkgs.vimPlugins; [
+            telescope-nvim
+            telescope-fzf-native-nvim
+          ];
+          nixdev = with pkgs.vimPlugins; [
+            lazydev-nvim
+          ];
         };
 
         # shared libraries to be added to LD_LIBRARY_PATH
@@ -156,6 +172,20 @@
           # (and other information to pass to lua)
           categories = {
             common = true;
+          };
+        };
+        nvim-nixdev = { pkgs, name, ... }: {
+          settings = {
+            suffix-path = true;
+            suffix-LD = true;
+            wrapRc = true;
+            # IMPORTANT:
+            # your alias may not conflict with your other packages.
+            aliases = [ ];
+          };
+          categories = {
+            common = true;
+            nixdev = true;
           };
         };
       };

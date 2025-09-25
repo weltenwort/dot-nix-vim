@@ -1,8 +1,12 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+if nixCats('common') then
+  require('user.common')
+end
 
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+if nixCats('nixdev') then
+  require('user.nixdev')
+end
 
-vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+-- late config
+if nixCats('common') then
+  require('user.common.after')
+end
