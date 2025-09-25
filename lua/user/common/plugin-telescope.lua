@@ -58,7 +58,20 @@ require("lze").load({
   after = function (plugin)
     local telescope = require("telescope")
     
-    telescope.setup()
+    telescope.setup({
+      defaults = {
+        layout_config = {
+          flex = {
+            prompt_position = "top",
+          },
+          horizontal = {
+            prompt_position = "top",
+          },
+        },
+        layout_strategy = "flex",
+        sorting_strategy = "ascending",
+      },
+    })
 
     telescope.load_extension("fzf")
   end,
