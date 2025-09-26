@@ -2,8 +2,12 @@ if nixCats('common') then
   require('user.common')
 end
 
-if nixCats('nixdev') then
-  require('user.nixdev')
+if nixCats('lang-nix') then
+  require('user.lang-nix')
+end
+
+if nixCats('lang-lua') then
+  require('user.lang-lua')
 end
 
 -- late config

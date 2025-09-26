@@ -1,7 +1,7 @@
 require("lze").load({
   "telescope.nvim",
   cmd = { "Telescope" },
-  om_require = { "telescope" },
+  om_require = { "telescope", "telescope.builtin" },
   keys = {
     {
       "<leader>ff",

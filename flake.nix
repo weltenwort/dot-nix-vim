@@ -82,10 +82,13 @@
             ripgrep
             fd
           ];
-          nixdev = with pkgs; [
+          lang-nix = with pkgs; [
             nix-doc
-            lua-language-server
             nixd
+          ];
+          lang-lua = with pkgs; [
+            lua-language-server
+            stylua
           ];
         };
 
@@ -102,10 +105,15 @@
         # use with packadd and an autocommand in config to achieve lazy loading
         optionalPlugins = {
           common = with pkgs.vimPlugins; [
+            conform-nvim
+            nvim-lspconfig
             telescope-nvim
             telescope-fzf-native-nvim
+            vim-sleuth
           ];
-          nixdev = with pkgs.vimPlugins; [
+          lang-nix = with pkgs.vimPlugins; [ ];
+          lang-lua = with pkgs.vimPlugins; [ ];
+          lang-nvim = with pkgs.vimPlugins; [
             lazydev-nvim
           ];
         };
@@ -174,7 +182,7 @@
             common = true;
           };
         };
-        nvim-nixdev = { pkgs, name, ... }: {
+        nvim-nix = { pkgs, name, ... }: {
           settings = {
             suffix-path = true;
             suffix-LD = true;
@@ -185,7 +193,23 @@
           };
           categories = {
             common = true;
-            nixdev = true;
+            lang-nix = true;
+          };
+        };
+        nvim-nvim = { pkgs, name, ... }: {
+          settings = {
+            suffix-path = true;
+            suffix-LD = true;
+            wrapRc = true;
+            # IMPORTANT:
+            # your alias may not conflict with your other packages.
+            aliases = [ ];
+          };
+          categories = {
+            common = true;
+            lang-nix = true;
+            lang-nvim = true;
+            lang-lua = true;
           };
         };
       };
