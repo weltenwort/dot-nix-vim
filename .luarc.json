@@ -2,6 +2,7 @@
     "diagnostics.globals": [
         "nixCats",
         "vim",
-        "MiniIcons"
+        "MiniIcons",
+        "MiniFiles"
     ]
 }
