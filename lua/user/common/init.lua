@@ -33,6 +33,7 @@ require("mini.basics").setup({
 
 require("mini.ai").setup()
 require("mini.bufremove").setup()
+require("mini.completion").setup()
 require("mini.diff").setup()
 require("mini.extra").setup()
 require("mini.icons").setup()
@@ -48,6 +49,7 @@ require("mini.notify").setup()
 require("mini.pairs").setup()
 require("mini.pick").setup()
 require("mini.sessions").setup()
+require("mini.snippets").setup()
 require("mini.starter").setup()
 require("mini.statusline").setup()
 require("mini.surround").setup()
@@ -61,3 +63,10 @@ require("user.common.plugin-telescope")
 require("user.common.plugin-lspconfig")
 require("user.common.plugin-conform")
 require("user.common.plugin-treesitter")
+
+local map_multistep = require("mini.keymap").map_multistep
+
+map_multistep("i", "<Tab>", { "minisnippets_next", "minisnippets_expand", "pmenu_next" })
+map_multistep("i", "<S-Tab>", { "minisnippets_prev", "pmenu_prev" })
+map_multistep("i", "<CR>", { "pmenu_accept", "minipairs_cr" })
+map_multistep("i", "<BS>", { "minipairs_bs" })
