@@ -108,6 +108,7 @@
         optionalPlugins = {
           common = with pkgs.vimPlugins; [
             conform-nvim
+            neogit
             nvim-lspconfig
             nvim-treesitter-textobjects
             nvim-treesitter.withAllGrammars

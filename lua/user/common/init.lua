@@ -57,6 +57,7 @@ require("user.common.plugin-telescope")
 require("user.common.plugin-lspconfig")
 require("user.common.plugin-conform")
 require("user.common.plugin-treesitter")
+require("user.common.plugin-neogit")
 
 -- Completion keymaps
 local map_multistep = require("mini.keymap").map_multistep
