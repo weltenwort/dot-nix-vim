@@ -4,13 +4,6 @@ vim.g.maplocalleader = " "
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "help",
-	callback = function(event)
-		vim.keymap.set("n", "ä", "<C-]>", { buffer = event.buf, desc = "Follow help link with ä" })
-	end,
-})
-
 vim.diagnostic.config({
 	virtual_text = true,
 })
@@ -36,6 +29,7 @@ require("mini.bufremove").setup()
 require("mini.completion").setup()
 require("mini.diff").setup()
 require("mini.extra").setup()
+require("mini.git").setup()
 require("mini.icons").setup()
 require("mini.indentscope").setup({
 	draw = {
@@ -64,9 +58,25 @@ require("user.common.plugin-lspconfig")
 require("user.common.plugin-conform")
 require("user.common.plugin-treesitter")
 
+-- Completion keymaps
 local map_multistep = require("mini.keymap").map_multistep
-
 map_multistep("i", "<Tab>", { "minisnippets_next", "minisnippets_expand", "pmenu_next" })
 map_multistep("i", "<S-Tab>", { "minisnippets_prev", "pmenu_prev" })
 map_multistep("i", "<CR>", { "pmenu_accept", "minipairs_cr" })
 map_multistep("i", "<BS>", { "minipairs_bs" })
+
+-- Buffer and window keymaps
+vim.keymap.set("n", "<BS><BS>", ":b#<CR>", {
+	desc = "Go to previously used buffer",
+})
+vim.keymap.set("n", "<leader>bd", function()
+	require("mini.bufremove").delete()
+end, {
+	desc = "Delete buffer",
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "help",
+	callback = function(event)
+		vim.keymap.set("n", "ä", "<C-]>", { buffer = event.buf, desc = "Follow help link with ä" })
+	end,
+})
