@@ -4,12 +4,16 @@ if nixCats("common") then
 end
 
 -- languages
+if nixCats("lang-lua") then
+	require("user.lang-lua")
+end
+
 if nixCats("lang-nix") then
 	require("user.lang-nix")
 end
 
-if nixCats("lang-lua") then
-	require("user.lang-lua")
+if nixCats("lang-typescript") then
+	require("user.lang-typescript")
 end
 
 -- features

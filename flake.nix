@@ -99,14 +99,18 @@
               ripgrep
               fd
             ];
+            lang-lua = with pkgs; [
+              lua-language-server
+              stylua
+            ];
             lang-nix = with pkgs; [
               nix-doc
               nixd
               nixfmt
             ];
-            lang-lua = with pkgs; [
-              lua-language-server
-              stylua
+            lang-typescript = with pkgs; [
+              eslint_d
+              typescript-language-server
             ];
           };
 
@@ -133,11 +137,12 @@
               telescope-nvim
               vim-sleuth
             ];
-            lang-nix = with pkgs.vimPlugins; [ ];
             lang-lua = with pkgs.vimPlugins; [ ];
+            lang-nix = with pkgs.vimPlugins; [ ];
             lang-nvim = with pkgs.vimPlugins; [
               lazydev-nvim
             ];
+            lang-typescript = with pkgs.vimPlugins; [ ];
             feature-llm = with pkgs.vimPlugins; [
               codecompanion-nvim
             ];
@@ -239,6 +244,23 @@
               lang-nix = true;
               lang-nvim = true;
               lang-lua = true;
+              feature-llm = true;
+            };
+          };
+        nvts =
+          { pkgs, name, ... }:
+          {
+            settings = {
+              suffix-path = true;
+              suffix-LD = true;
+              wrapRc = true;
+              # IMPORTANT:
+              # your alias may not conflict with your other packages.
+              aliases = [ ];
+            };
+            categories = {
+              common = true;
+              lang-typescript = true;
               feature-llm = true;
             };
           };
