@@ -37,14 +37,15 @@ require("mini.indentscope").setup({
 	},
 })
 require("mini.jump").setup()
-require("mini.jump2d").setup()
 require("mini.keymap").setup()
 require("mini.notify").setup()
 require("mini.pairs").setup()
 require("mini.pick").setup()
 require("mini.sessions").setup()
 require("mini.snippets").setup()
-require("mini.starter").setup()
+require("mini.starter").setup({
+	query_updaters = "abcdefghijklmnopqrstuvwxyz0123456789_.",
+})
 require("mini.statusline").setup()
 require("mini.surround").setup()
 require("mini.tabline").setup()
@@ -53,6 +54,7 @@ require("lze").register_handlers(require("lzextras").merge)
 require("lze").register_handlers(require("lzextras").lsp)
 
 require("user.common.plugin-mini-files")
+require("user.common.plugin-mini-jump2d")
 require("user.common.plugin-telescope")
 require("user.common.plugin-lspconfig")
 require("user.common.plugin-conform")
