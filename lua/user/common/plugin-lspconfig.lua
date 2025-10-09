@@ -17,6 +17,8 @@ require("lze").h.lsp.set_ft_fallback(new_ft_fallback)
 
 -- buffer-local lsp mappings
 local on_attach_lsp = function(_, bufnr)
+	vim.print("attaching", bufnr)
+
 	local nmap = function(keys, func, desc)
 		if desc then
 			desc = "LSP: " .. desc
@@ -49,20 +51,23 @@ local on_attach_lsp = function(_, bufnr)
 	-- See `:help K` for why this keymap
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
 	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-
-	MiniIcons.tweak_lsp_kind()
 end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("user.lsp", {}),
+	callback = on_attach_lsp,
+})
 
 -- lspconfig
 require("lze").load({
 	"nvim-lspconfig",
+	on_require = { "lspconfig" },
 	lsp = function(plugin)
+		vim.print(vim.inspect(plugin))
 		vim.lsp.config(plugin.name, plugin.lsp or {})
 		vim.lsp.enable(plugin.name)
 	end,
-	before = function()
-		vim.lsp.config("*", {
-			on_attach = on_attach_lsp,
-		})
+	after = function()
+		MiniIcons.tweak_lsp_kind()
 	end,
 })
