@@ -8,6 +8,8 @@ vim.diagnostic.config({
 	virtual_text = true,
 })
 
+vim.opt.termguicolors = true
+
 require("mini.basics").setup({
 	options = {
 		basic = true,
