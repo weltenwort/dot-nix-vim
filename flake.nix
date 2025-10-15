@@ -112,6 +112,9 @@
               eslint_d
               typescript-language-server
             ];
+            feature-llm = with pkgs; [
+              nodejs_24
+            ];
           };
 
           # This is for plugins that will load at startup without using packadd:
@@ -145,6 +148,7 @@
             lang-typescript = with pkgs.vimPlugins; [ ];
             feature-llm = with pkgs.vimPlugins; [
               codecompanion-nvim
+              copilot-lua
             ];
           };
 
