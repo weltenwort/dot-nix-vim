@@ -4,6 +4,8 @@ vim.g.maplocalleader = " "
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
+vim.opt.relativenumber = true
+
 vim.diagnostic.config({
 	virtual_text = true,
 })
