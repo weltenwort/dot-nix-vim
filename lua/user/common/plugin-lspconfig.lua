@@ -17,8 +17,6 @@ require("lze").h.lsp.set_ft_fallback(new_ft_fallback)
 
 -- buffer-local lsp mappings
 local on_attach_lsp = function(_, bufnr)
-	vim.print("attaching", bufnr)
-
 	local nmap = function(keys, func, desc)
 		if desc then
 			desc = "LSP: " .. desc
@@ -63,7 +61,6 @@ require("lze").load({
 	"nvim-lspconfig",
 	on_require = { "lspconfig" },
 	lsp = function(plugin)
-		vim.print(vim.inspect(plugin))
 		vim.lsp.config(plugin.name, plugin.lsp or {})
 		vim.lsp.enable(plugin.name)
 	end,
