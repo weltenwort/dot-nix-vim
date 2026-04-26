@@ -7,6 +7,8 @@
   imports = [
     ../modules/lint.nix
     ../modules/lang-nix.nix
+    ../modules/neogit.nix
+    ../modules/diffview.nix
   ];
 
   config =
