@@ -2,15 +2,19 @@
   description = "nixvim flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs = {
+      follows = "nixvim/nixpkgs";
+    };
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
   };
 
-  outputs = inputs@{ flake-parts, ... }:
+  outputs =
+    inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = { };
       systems = [
@@ -18,7 +22,8 @@
         "x86_64-linux"
         "aarch64-darwin"
       ];
-      perSystem = { pkgs, system, ... }:
+      perSystem =
+        { pkgs, system, ... }:
         let
           nixvim = inputs.nixvim.legacyPackages.${system};
           simpleNvim = nixvim.makeNixvimWithModule {
