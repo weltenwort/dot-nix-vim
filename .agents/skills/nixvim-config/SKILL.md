@@ -8,6 +8,14 @@ metadata:
   workflow: nix-flake
 ---
 
+## Loading this skill
+
+If `skill nixvim-config` is unavailable, read the file directly:
+
+```
+read .agents/skills/nixvim-config/SKILL.md
+```
+
 ## When to use this skill
 
 Load this skill when the task involves any of:
@@ -120,13 +128,16 @@ Notes:
 
 ## Discovering nixvim options
 
-Two authoritative sources:
+Three approaches, ordered by reliability:
 
-- **Options search site:** https://nix-community.github.io/nixvim/ — search by plugin or option name for attribute paths, types, defaults, and usage examples. This is the fastest way to confirm `plugins.<name>.settings.*` shape.
-- **Source repository:** https://github.com/nix-community/nixvim — when the search site is ambiguous, incomplete, or out of date:
-  - Browse `plugins/` and `modules/` for the authoritative module definition and its option types.
-  - Check `tests/` for realistic, working configuration snippets.
-  - Cross-reference issues and recent commits, especially for options introduced after the nixvim rev pinned in `flake.lock`.
+1. **Read the module source directly (Recommended)**
+   Fetch the raw module for the plugin from the `main` branch:
+   ```
+   https://raw.githubusercontent.com/nix-community/nixvim/main/plugins/by-name/<plugin>/default.nix
+   ```
+   This gives the authoritative `settingsOptions`, `settingsExample`, dependencies, and assertions. Cross-check against the revision pinned in `flake.lock` if the module and docs disagree.
+
+2. **Source repository:** https://github.com/nix-community/nixvim — browse `plugins/`, `modules/`, and `tests/` when the raw module is ambiguous.
 
 Always match the option surface to the pinned revision in `flake.lock`, not the latest docs, if the two disagree.
 
