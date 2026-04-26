@@ -28,7 +28,7 @@
           nixvim = inputs.nixvim.legacyPackages.${system};
           simpleNvim = nixvim.makeNixvimWithModule {
             inherit pkgs;
-            module = import ./simple.nix;
+            module = import ./variants/simple.nix;
           };
         in
         {
