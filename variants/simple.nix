@@ -26,7 +26,6 @@
         relativenumber = true;
         showmode = false;
         mouse = "a";
-        clipboard = "unnamedplus";
         breakindent = true;
         undofile = true;
         list = true;
